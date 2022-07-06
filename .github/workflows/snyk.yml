@@ -10,12 +10,12 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --org=julianladisch --file=./Dockerfile
-          command: container monitor
-      - name: snyk container
+          args: test bitnami/elasticsearch:7.10.2 --org=julianladisch
+          command: container
+      - name: snyk container monitor
         uses: snyk/actions/maven-3-jdk-11@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --org=julianladisch --file=./Dockerfile
-          command: container monitor
+          args: monitor bitnami/elasticsearch:7.10.2 --org=julianladisch
+          command: container
