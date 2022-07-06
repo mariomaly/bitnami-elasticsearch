@@ -1,0 +1,14 @@
+name: Snyk security scan
+on: [push, workflow_dispatch]
+jobs:
+  maven:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: snyk container
+        uses: snyk/actions/maven-3-jdk-11@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --org=julianladisch
+          command: container
