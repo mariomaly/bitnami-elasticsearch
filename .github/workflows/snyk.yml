@@ -5,10 +5,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: snyk container test
+        uses: snyk/actions/maven-3-jdk-11@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --org=julianladisch --file=./Dockerfile
+          command: container monitor
       - name: snyk container
         uses: snyk/actions/maven-3-jdk-11@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          args: --org=julianladisch
-          command: container test
+          args: --org=julianladisch --file=./Dockerfile
+          command: container monitor
