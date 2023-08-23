@@ -1,1 +1,1 @@
-FROM bitnami/elasticsearch:7.10.2
+FROM bitnami/elasticsearch:latest
